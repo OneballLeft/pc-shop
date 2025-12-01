@@ -1,0 +1,17 @@
+# Git files
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+*.md
+
+# Environment files
+.env
+.env.local
+
+# Docker files
+Dockerfile
+.dockerignore
+docker-compose.yml
