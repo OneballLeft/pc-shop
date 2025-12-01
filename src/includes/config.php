@@ -1,9 +1,10 @@
 <?php
 // Database configuration
-define('DB_HOST', 'localhost');
-define('DB_USER', 'pc_user');
-define('DB_PASS', 'arch');
-define('DB_NAME', 'pc_store');
+// Use environment variables if available (for production), otherwise use defaults (for local dev)
+define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
+define('DB_USER', getenv('DB_USER') ?: 'pc_user');
+define('DB_PASS', getenv('DB_PASS') ?: 'arch');
+define('DB_NAME', getenv('DB_NAME') ?: 'pc_store');
 
 // Create database connection
 $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
