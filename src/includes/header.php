@@ -16,7 +16,7 @@ $user = getCurrentUser();
         <div class="container">
             <nav class="navbar">
                 <div class="logo">
-                    <a href="/index.php">TechPC</a>
+                    <a href="/index.php">Dream PC</a>
                 </div>
                 <button class="mobile-menu-toggle" id="mobileMenuToggle">
                     <span></span>
