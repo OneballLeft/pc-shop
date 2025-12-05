@@ -7,6 +7,9 @@ define('DB_PASS', getenv('DB_PASS') ?: 'arch');
 define('DB_NAME', getenv('DB_NAME') ?: 'pc_store');
 $use_ssl = getenv('DB_SSL') ?: 'false';
 
+// Debug: Log connection attempt (remove after troubleshooting)
+error_log("Attempting DB connection to: " . DB_HOST . " (SSL: $use_ssl)");
+
 // Create database connection
 if ($use_ssl === 'true') {
     // SSL connection for cloud providers like Aiven
@@ -35,7 +38,14 @@ if ($use_ssl === 'true') {
 
     // Check connection
     if (mysqli_connect_errno()) {
-        die('Connection failed: ' . mysqli_connect_error());
+        $error_msg = 'Connection failed: ' . mysqli_connect_error();
+        $error_msg .= '<br>Host: ' . DB_HOST;
+        $error_msg .= '<br>Port: ' . $db_port;
+        $error_msg .= '<br>User: ' . DB_USER;
+        $error_msg .= '<br>Database: ' . DB_NAME;
+        $error_msg .= '<br>SSL: ' . $use_ssl;
+        error_log($error_msg);
+        die($error_msg);
     }
 } else {
     // Standard connection for local development
