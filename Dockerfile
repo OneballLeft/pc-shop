@@ -25,8 +25,10 @@ RUN echo '<Directory /var/www/html>\n\
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
-# Expose port 80
+# Expose port (will be set by Render.com via PORT env var)
 EXPOSE 80
 
-# Start Apache in the foreground
-CMD ["apache2-foreground"]
+# Start Apache and configure it to use PORT env var at runtime
+CMD sed -i "s/Listen 80/Listen ${PORT:-80}/" /etc/apache2/ports.conf && \
+    sed -i "s/:80/:${PORT:-80}/" /etc/apache2/sites-available/000-default.conf && \
+    apache2-foreground
