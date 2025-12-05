@@ -80,9 +80,6 @@ foreach ($cart_items as $item) {
         <div class="fade-in">
             <?php foreach ($cart_items as $item): ?>
             <div class="cart-item">
-                <div class="cart-item-image">
-                    <span style="font-size: 2rem;">&#128421;</span>
-                </div>
                 <div class="cart-item-details">
                     <h3 class="cart-item-name"><?php echo htmlspecialchars($item['name']); ?></h3>
                     <p class="cart-item-price">$<?php echo number_format($item['price'], 2); ?> each</p>

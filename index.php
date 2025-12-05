@@ -3,7 +3,7 @@ $page_title = 'Home';
 require_once 'src/includes/header.php';
 
 // Fetch featured products
-$query = "SELECT * FROM products WHERE featured = TRUE ORDER BY created_at DESC LIMIT 4";
+$query = 'SELECT * FROM products WHERE featured = TRUE ORDER BY created_at DESC LIMIT 4';
 $result = mysqli_query($conn, $query);
 $featured_products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
@@ -22,9 +22,6 @@ $featured_products = mysqli_fetch_all($result, MYSQLI_ASSOC);
         <div class="product-grid">
             <?php foreach ($featured_products as $product): ?>
             <div class="product-card fade-in">
-                <div class="product-image">
-                    <span>&#128421;</span>
-                </div>
                 <div class="product-info">
                     <h3 class="product-name"><?php echo htmlspecialchars($product['name']); ?></h3>
                     <span class="product-category"><?php echo htmlspecialchars($product['category']); ?></span>

@@ -52,10 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
     <?php endif; ?>
 
     <div class="product-detail fade-in">
-        <div class="product-detail-image">
-            <span>&#128421;</span>
-        </div>
-
         <div class="product-detail-info">
             <h1><?php echo htmlspecialchars($product['name']); ?></h1>
             <span class="product-category"><?php echo htmlspecialchars($product['category']); ?></span>

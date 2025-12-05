@@ -43,9 +43,6 @@ $categories = mysqli_fetch_all($cat_result, MYSQLI_ASSOC);
         <?php else: ?>
             <?php foreach ($products as $product): ?>
             <div class="product-card fade-in">
-                <div class="product-image">
-                    <span>&#128421;</span>
-                </div>
                 <div class="product-info">
                     <h3 class="product-name"><?php echo htmlspecialchars($product['name']); ?></h3>
                     <span class="product-category"><?php echo htmlspecialchars($product['category']); ?></span>
