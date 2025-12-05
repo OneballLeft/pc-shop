@@ -13,13 +13,20 @@ WORKDIR /var/www/html
 # Copy application files to the container
 COPY . /var/www/html/
 
-# Update Apache configuration to allow .htaccess overrides
+# Update Apache configuration to allow .htaccess overrides and set DirectoryIndex
 RUN echo '<Directory /var/www/html>\n\
     Options Indexes FollowSymLinks\n\
     AllowOverride All\n\
     Require all granted\n\
-</Directory>' > /etc/apache2/conf-available/docker-php.conf \
+    DirectoryIndex index.php index.html\n\
+</Directory>\n\
+<FilesMatch \.php$>\n\
+    SetHandler application/x-httpd-php\n\
+</FilesMatch>' > /etc/apache2/conf-available/docker-php.conf \
     && a2enconf docker-php
+
+# Set ServerName to suppress Apache warning
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # Set proper permissions
 RUN chown -R www-data:www-data /var/www/html \
